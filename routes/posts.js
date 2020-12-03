@@ -104,7 +104,7 @@ async function getPostByUserId(req, res, next) {
         post = await Post.find({ userId: req.params.id })
         
         if (post == null) {
-            return res.status(404).json({message: 'Curso not found'})
+            return res.status(404).json({message: 'Post by user ID not found'})
         }
     }catch (err) {
         res.status(500).json({message: err.message})
