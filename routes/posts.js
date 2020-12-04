@@ -70,6 +70,22 @@ router.patch('/:id', getPost, async (req, res) => {
     }
 })
 
+router.put('/publish/:id', getPost, async (req, res) => {
+
+    if (req.body.status == null) {
+        res.status(422).json({message: "Por favor, informe um status!"})
+    }
+    res.post.status = req.body.status
+
+    try {
+        const updated = await res.post.save()
+
+        res.json(updated)
+    }catch (err) {
+        res.status(400).json({message: err.message})
+    }
+})
+
 // DELETE remove
 router.delete('/:id', getPost, async (req, res) => {
 
